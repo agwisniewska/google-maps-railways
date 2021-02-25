@@ -1,0 +1,64 @@
+@mixin font-raleway-black-64 {
+font-family: 'Raleway', sans-serif;
+font-size: 64px;
+font-weight: 900;
+color: $white;
+line-height: 75px;
+text-transform: uppercase;
+}
+
+@mixin font-raleway-extra-bold-regular-20 {
+    font-family: 'Raleway', sans-serif;
+    font-size: 20px;
+    font-weight: 800;
+    color: $white;
+    letter-spacing: 0;
+    line-height: 31px;
+    text-transform: uppercase;
+}
+
+@mixin font-raleway-medium-regular-14 {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    color: $gray-7;
+    letter-spacing: 0;
+    line-height: 16px;
+}
+
+@mixin font-raleway-extra-bold-regular-34 {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 900;
+    font-size: 34px;
+    color: $gray-7;
+    letter-spacing: 0;
+    line-height: 40px;
+}
+
+@mixin font-raleway-medium-regular-22 {
+    font-family: 'Raleway', sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: $gray-5;
+    letter-spacing: 0;
+    line-height: 26px;
+}
+
+
+@mixin font-raleway-medium-regular-17 {
+    font-family: 'Raleway', sans-serif;
+    font-size: 17px;
+    color: $gray-5;
+    font-weight: 600;
+    letter-spacing: 0;
+    line-height: 20px;
+}
+
+@mixin font-raleway-regular-13 {
+    font-family: 'Raleway', sans-serif;
+    font-size: 13px;
+    color: $white;
+    font-weight: 800;
+    line-height: 15px;
+    text-transform: uppercase;
+}
