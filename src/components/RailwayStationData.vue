@@ -6,15 +6,17 @@
   >
     <Label v-if="nearestStation" label="Nearest station" />
     <div class="container__station">
-      <div>
+      <div class="row">
         <h2 class="station__title">
           {{ station.fields.bezeichnung_offiziell }}
         </h2>
         <div class="station__service">
-          <img v-if="serviceIcon" :src="serviceIcon" alt="service-icon" />
+          <div v-if="serviceIcon" :class="serviceIcon.className">
+            <img :src="serviceIcon.img" alt="service-icon" />
+          </div>
         </div>
       </div>
-      <div>
+      <div class="row">
         <div class="station__address">
           <span v-if="station.fields.adresse"
             >{{ station.fields.adresse }},</span
@@ -75,7 +77,7 @@ export default class RailwayStationData extends Vue {
       flex-direction: column;
       justify-content: center;
 
-      div {
+      .row {
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -92,6 +94,24 @@ export default class RailwayStationData extends Vue {
         &__mail {
           @include font-raleway-medium-regular-17;
           text-align: right;
+        }
+
+        &__service {
+          min-width: 150px;
+          display: grid;
+          grid-template-columns: 1fr;
+          grid-gap: 10px;
+          .money {
+            justify-self: start;
+          }
+
+          .luggage {
+            justify-self: center;
+          }
+
+          .lunge {
+            justify-self: end;
+          }
         }
       }
     }

@@ -1,11 +1,37 @@
-const icons: Record<string, string> = {
-  Gepäckaufbewahrung: require("@/assets/images/Groupe 4.svg"),
-  Gepäckausgabe: require("@/assets/images/Groupe 4.svg"),
-  "Businesstravel Service Center": require("@/assets/images/Groupe 5.svg"),
-  "Geldwechsel ": require("@/assets/images/Groupe 6.svg"),
-  "Western Union": require("@/assets/images/Groupe 6.svg")
-};
+interface Icon {
+  className: string;
+  img: string;
+}
+
+const icons: Record<string, Icon> = {
+  Gepäckaufbewahrung: {
+    className: 'luggage',
+    img: require("@/assets/images/Groupe 4.svg"),
+  },
+  Gepäckausgabe: {
+    className: 'luggage',
+    img: require("@/assets/images/Groupe 4.svg")
+  },
+  "Businesstravel Service Center": {
+    className: 'lunge',
+    img: require("@/assets/images/Groupe 5.svg"),
+  },
+
+  "Geldwechsel ": {
+    className: 'money',
+    img: require("@/assets/images/Groupe 6.svg")
+  },
+  "Western Union": {
+    className: 'money',
+    img: require("@/assets/images/Groupe 6.svg")
+  }
+}
 
 export const mapServiceToIcon = (service: string) => {
-  return icons[service];
+  console.log(service);
+  if (icons[service]) {
+    return icons[service]
+  }
+
+  return null;
 };

@@ -8,23 +8,18 @@
     apiKey="AIzaSyDw_DEMNGJVRHIKYsJkP9ZRBjevr40SpEY"
   >
     <template slot-scope="{ google, map }">
-      <template v-if="fetchingStatus">
-      <div v-for="(station, key) in railwayStations" :key="key">
-        <GoogleMapMarker
-          :data="station"
-          :google="google"
-          :map="map"
-        />
-        <GoogleMapPopup
-          :data="station"
-          :google="google"
-          :map="map"
-        />
-      </div>
-      </template>
-       <template v-if="!fetchingStatus">
-        Fetching error, try to refresh your browser
-      </template>
+        <div v-for="(station, key) in railwayStations" :key="key">
+          <GoogleMapMarker
+            :data="station"
+            :google="google"
+            :map="map"
+          />
+          <GoogleMapPopup
+            :data="station"
+            :google="google"
+            :map="map"
+          />
+        </div>
     </template>
   </GoogleMapLoader>
 </template>
@@ -44,15 +39,12 @@ const Stations = namespace("Stations");
   components: {
     GoogleMapLoader,
     GoogleMapMarker,
-    GoogleMapPopup
+    GoogleMapPopup,
   },
 })
 export default class RailwayStationsMap extends Vue {
   @Stations.Getter
   public railwayStations!: Record<string, RailwayStation>;
-  
-  @Stations.Getter
-  public fetchingStatus!: boolean;
 
   @Stations.Getter
   public latLngRailwayStation!: Position;
