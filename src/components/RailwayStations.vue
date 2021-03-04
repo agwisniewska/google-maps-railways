@@ -18,7 +18,7 @@ import { Component, Vue } from "vue-property-decorator";
 import RailwayStationData from "./RailwayStationData.vue";
 
 import { namespace } from "vuex-class";
-import { RailwayStation } from "@/store/types";
+import { RailwayStation } from "../store/types";
 
 const Stations = namespace("Stations");
 

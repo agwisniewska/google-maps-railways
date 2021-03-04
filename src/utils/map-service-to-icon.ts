@@ -3,7 +3,7 @@ interface Icon {
   img: string;
 }
 
-const icons: Record<string, Icon> = {
+export const icons: Record<string, Icon> = {
   Gepäckaufbewahrung: {
     className: 'luggage',
     img: require("@/assets/images/Groupe 4.svg"),
@@ -16,8 +16,7 @@ const icons: Record<string, Icon> = {
     className: 'lunge',
     img: require("@/assets/images/Groupe 5.svg"),
   },
-
-  "Geldwechsel ": {
+  Geldwechsel: {
     className: 'money',
     img: require("@/assets/images/Groupe 6.svg")
   },
@@ -27,9 +26,8 @@ const icons: Record<string, Icon> = {
   }
 }
 
-export const mapServiceToIcon = (service: string) => {
-  console.log(service);
-  if (icons[service]) {
+export const mapServiceToIcon = (icons: Record<string, Icon>, service: string | undefined): Icon | null => {
+  if (service && icons[service]) {
     return icons[service]
   }
 

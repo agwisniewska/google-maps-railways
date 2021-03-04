@@ -1,8 +1,8 @@
-enum GeometryType {
+export enum GeometryType {
   POINT = "Point"
 }
 
-interface Geometry {
+export interface Geometry {
   type: typeof GeometryType;
   coordinates: [number, number];
 }
@@ -34,10 +34,10 @@ interface RailwayStationFields {
 export interface RailwayStation {
   geometry: Geometry;
   recordid: string;
-  datasetid: string;
-  fields: RailwayStationFields;
-  record_timestamp: string;
-  active: boolean;
+  datasetid?: string;
+  fields?: RailwayStationFields;
+  record_timestamp?: string;
+  active?: boolean;
 }
 
 export type Marker = {

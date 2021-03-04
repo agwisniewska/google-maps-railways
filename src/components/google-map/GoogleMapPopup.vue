@@ -1,15 +1,16 @@
 <script lang="ts">
 import { Component, Watch } from "vue-property-decorator";
-import { RailwayStation } from "@/store/types";
-import { mapServiceToIcon, mapUndefinedToString } from "@/utils";
 import GoogleMapElement from "./GoogleMapElement.vue";
+import { RailwayStation } from "../../store/types";
+import { mapServiceToIcon, mapUndefinedToString, icons } from "../../utils";
 
 @Component({})
 export default class GoogleMapPopup extends GoogleMapElement {
   public infowindow: google.maps.InfoWindow = new this.google.maps.InfoWindow();
 
   private getServiceIcon(service: string) {
-    const icon = mapServiceToIcon(service);
+    const icon = mapServiceToIcon(icons, service);
+
     if (icon) {
       return `<div class="content__service"> <img src="${icon}"/> </div>`;
     }
@@ -18,9 +19,9 @@ export default class GoogleMapPopup extends GoogleMapElement {
   }
 
   private getAddress(fields: Record<string, string | number | undefined>) {
-    return ["adresse", "bpuic", "bezeichnungOffiziell"].map((detail) =>
-      this.formatInfoWindowContent(fields[detail])
-    ).join(' ');
+    return ["adresse", "bpuic", "bezeichnungOffiziell"]
+      .map((detail) => this.formatInfoWindowContent(fields[detail]))
+      .join(" ");
   }
 
   private formatInfoWindowContent(content: string | number | undefined) {
@@ -28,25 +29,42 @@ export default class GoogleMapPopup extends GoogleMapElement {
   }
 
   public getContent() {
-    return `<div class="info-window">
+    if (this.data) {
+      const { fields } = this.data;
+      const {
+        bezeichnung_offiziell,
+        bpuic = "",
+        adresse = "",
+        service = "",
+        mail = "",
+      } = fields || {
+        bezeichnung_offiziell: "",
+        bpuic: "",
+        adresse: "",
+        service: "",
+        mail: "",
+      };
+
+      return `<div class="info-window">
                   <h1 class="info-window__heading">
-                    ${this.data.fields.bezeichnung_offiziell}
+                    ${bezeichnung_offiziell}
                   </h1>
                   <div class="info-window__content"> 
                     <div class="content__address">
                       ${this.getAddress({
-                        bpuic: this.data.fields.bpuic,
-                        adresse: this.data.fields.adresse,
-                        bezeichnungOffiziell: this.data.fields
-                          .bezeichnung_offiziell,
+                        bpuic: bpuic,
+                        adresse: adresse,
+                        bezeichnungOffiziell: bezeichnung_offiziell,
                       })}
                     </div>
                       <div class="content__mail"> ${this.formatInfoWindowContent(
-                        this.data.fields.mail
+                        mail
                       )} </div>
-                      ${this.getServiceIcon(this.data.fields.service)}
+                      ${this.getServiceIcon(service)}
                   </div>
                   `;
+    }
+    return null;
   }
 
   public addInfoWindow() {

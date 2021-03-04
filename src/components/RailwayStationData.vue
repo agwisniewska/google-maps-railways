@@ -7,7 +7,8 @@
     <Label v-if="nearestStation" label="Nearest station" />
     <div class="container__station">
       <div class="row">
-        <h2 class="station__title">
+        <h2 v-if="station.fields.bezeichnung_offiziell"
+            class="station__title">
           {{ station.fields.bezeichnung_offiziell }}
         </h2>
         <div class="station__service">
@@ -36,10 +37,10 @@
 </template>
 
 <script lang="ts">
-import { RailwayStation } from "@/store/types";
-import Label from "@/components/Label.vue";
+import { RailwayStation } from "../store/types";
+import Label from "./Label.vue";
 import { Component, Vue, Prop } from "vue-property-decorator";
-import { mapServiceToIcon } from "@/utils/";
+import { mapServiceToIcon, icons } from "../utils";
 
 @Component({
   components: {
@@ -56,7 +57,10 @@ export default class RailwayStationData extends Vue {
   }
 
   get serviceIcon() {
-    return mapServiceToIcon(this.station.fields.service);
+    if (this.station && this.station.fields) {
+      return mapServiceToIcon(icons, this.station.fields.service);
+    }
+    return null;
   }
 }
 </script>

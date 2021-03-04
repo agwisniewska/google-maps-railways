@@ -1,9 +1,9 @@
 import { Params } from "./types";
-import axios from "axios";
+import { api } from "@/api";
 
 const url = "https://data.sbb.ch/api/records/1.0/search/";
 
-const defaultParams = {
+export const defaultParams = {
   facet: "service",
   dataset: "kontaktadressen",
   rows: 10
@@ -19,6 +19,6 @@ export class StationService {
   }
 
   async getStations(params: Pick<Params, "start">) {
-    return await axios.get(url, { params: { ...defaultParams, ...params } });
+    return await api.fetch(url, { params: { ...defaultParams, ...params } });
   }
 }

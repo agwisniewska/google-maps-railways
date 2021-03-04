@@ -1,11 +1,11 @@
-import { RailwayStation, Marker } from "@/store/types";
+import {  Marker, Position } from "@/store/types";
 
-export const mapDataToMarker = (station: RailwayStation): Marker => {
+export const mapDataToMarker = (id: string, coordinates: Position): Marker => {
   return {
-    id: station.recordid,
+    id,
     position: {
-      lat: station.geometry.coordinates[1],
-      lng: station.geometry.coordinates[0]
+      lat: coordinates.lat,
+      lng: coordinates.lng
     }
   };
 };
